@@ -1,0 +1,349 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>신소재공학 진로 로드맵</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans+KR:wght@400;500;700&family=Gothic+A1:wght@800;900&display=swap">
+<style>
+/* Layout: 금속 시편 라벨처럼 원소 칸(셀)을 반복 모티프로 쓰는 단일 컬럼 문서 + 계산기 작업대 */
+:root{
+  --bg:#F2F3F4; --surface:#FFFFFF; --ink:#1A1E23; --muted:#5B6470; --line:#D5D9DE;
+  --copper:#B4602A; --copper-soft:#F6E7DC; --lithium:#1F7A78; --lithium-soft:#DDEFEE;
+  --display:"Gothic A1","IBM Plex Sans KR",system-ui,sans-serif;
+  --body:"IBM Plex Sans KR","Apple SD Gothic Neo","Malgun Gothic",system-ui,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#14171B; --surface:#1C2126; --ink:#E8EAED; --muted:#9AA3AE; --line:#2E353D;
+  --copper:#E08A52; --copper-soft:#3A2618; --lithium:#4FB8B4; --lithium-soft:#15302F; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#14171B; --surface:#1C2126; --ink:#E8EAED; --muted:#9AA3AE; --line:#2E353D;
+  --copper:#E08A52; --copper-soft:#3A2618; --lithium:#4FB8B4; --lithium-soft:#15302F; color-scheme:dark}
+
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.7}
+.wrap{max-width:880px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:40px 64px;display:flex;flex-direction:column;gap:56px}
+h1,h2,h3{font-family:var(--display);text-wrap:balance;margin:0;line-height:1.25}
+h2{font-size:1.6rem}
+h3{font-size:1.1rem;font-family:var(--body);font-weight:700}
+p{margin:0}
+.eyebrow{font-family:var(--mono);font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;color:var(--copper)}
+section{display:flex;flex-direction:column;gap:18px}
+.lead{color:var(--muted);max-width:62ch}
+
+/* hero */
+.hero{display:grid;grid-template-columns:auto 1fr;gap:28px;align-items:center}
+.cells{display:grid;grid-template-columns:repeat(2,84px);gap:6px}
+.cell{border:2px solid var(--ink);background:var(--surface);aspect-ratio:1;max-width:100%;padding:6px 8px;display:flex;flex-direction:column;justify-content:space-between;font-family:var(--mono)}
+.cell .n{font-size:.7rem}
+.cell .s{font-family:var(--display);font-size:1.7rem;font-weight:900;line-height:1}
+.cell .m{font-size:.62rem;color:var(--muted)}
+.cell.cu{background:var(--copper-soft);border-color:var(--copper)}
+.cell.li{background:var(--lithium-soft);border-color:var(--lithium)}
+.hero h1{font-size:clamp(2rem,6vw,3.2rem);font-weight:900;letter-spacing:-.02em}
+.hero .who{font-family:var(--mono);font-size:.85rem;color:var(--muted);margin-top:10px}
+@media (max-width:560px){.hero{grid-template-columns:1fr}.cells{grid-template-columns:repeat(4,1fr)}}
+
+/* fields */
+.fields{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;background:var(--line);border:1px solid var(--line)}
+.field{background:var(--surface);padding:16px;display:flex;flex-direction:column;gap:6px}
+.field .tag{font-family:var(--mono);font-size:.72rem;color:var(--muted)}
+.field p{font-size:.92rem;color:var(--muted)}
+.field.star h3::after{content:" ● 관심";font-size:.72rem;color:var(--copper);font-family:var(--mono);font-weight:600}
+@media (max-width:700px){.fields{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:440px){.fields{grid-template-columns:1fr}}
+
+/* table */
+.tbl{overflow-x:auto;border:1px solid var(--line);background:var(--surface)}
+table{border-collapse:collapse;width:100%;min-width:520px;font-size:.93rem}
+th,td{text-align:left;padding:10px 14px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-family:var(--mono);font-size:.75rem;letter-spacing:.06em;color:var(--muted);font-weight:600}
+tr:last-child td{border-bottom:0}
+
+/* prep */
+.prep{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+.prep>div{display:flex;flex-direction:column;gap:10px;min-width:0}
+ul{margin:0;padding-left:1.1em;display:flex;flex-direction:column;gap:6px}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{font-size:.85rem;padding:3px 10px;border:1px solid var(--line);background:var(--surface);border-radius:2px}
+@media (max-width:600px){.prep{grid-template-columns:1fr}}
+
+/* lab */
+.lab{background:var(--surface);border:2px solid var(--ink);display:flex;flex-direction:column}
+.tabs{display:flex;border-bottom:2px solid var(--ink)}
+.tabs button{flex:1;font:600 .95rem var(--body);padding:12px;background:transparent;color:var(--muted);border:0;cursor:pointer;border-right:1px solid var(--line)}
+.tabs button:last-child{border-right:0}
+.tabs button[aria-selected="true"]{background:var(--ink);color:var(--bg)}
+.tabs button:focus-visible,select:focus-visible,input:focus-visible{outline:3px solid var(--copper);outline-offset:2px}
+.panel{padding:20px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.2fr);gap:24px}
+@media (max-width:680px){.panel{grid-template-columns:1fr}}
+.inputs{display:flex;flex-direction:column;gap:12px}
+label{font-size:.82rem;color:var(--muted);display:flex;flex-direction:column;gap:4px}
+select,input{font:500 1rem var(--mono);padding:8px 10px;border:1px solid var(--line);background:var(--bg);color:var(--ink);border-radius:2px;width:100%;box-sizing:border-box}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.out{display:flex;flex-direction:column;gap:14px;min-width:0}
+.big{font-family:var(--mono);font-variant-numeric:tabular-nums;font-size:2.4rem;font-weight:600;line-height:1}
+.big small{font-size:1rem;color:var(--muted);font-weight:400}
+.formula{font-family:var(--mono);font-size:.82rem;color:var(--muted);background:var(--bg);padding:8px 10px;border-left:3px solid var(--copper);overflow-x:auto}
+.bars{display:flex;flex-direction:column;gap:6px}
+.bar{display:grid;grid-template-columns:96px 1fr 64px;align-items:center;gap:8px;font-size:.8rem;font-variant-numeric:tabular-nums}
+.bar .track{height:12px;background:var(--bg);position:relative}
+.bar .fill{position:absolute;inset:0 auto 0 0;background:var(--line)}
+.bar.me .fill{background:var(--lithium)}
+.bar .v{font-family:var(--mono);text-align:right}
+.note{font-size:.88rem;color:var(--muted)}
+.spectrum{position:relative;height:28px;background:linear-gradient(90deg,#7a00b8 0%,#2a00ff 13%,#0090ff 25%,#00d4a0 35%,#3cff00 42%,#ffef00 52%,#ff8a00 62%,#ff0000 75%,#7a0000 100%)}
+.marker{position:absolute;top:-6px;bottom:-6px;width:3px;background:var(--ink);transform:translateX(-1px)}
+.axis{display:flex;justify-content:space-between;font-family:var(--mono);font-size:.7rem;color:var(--muted)}
+.swatch{width:56px;height:56px;border:2px solid var(--ink);flex:none}
+.res{display:flex;gap:14px;align-items:center}
+.pill{display:inline-block;font-family:var(--mono);font-size:.75rem;padding:2px 8px;border:1px solid currentColor;border-radius:999px}
+
+.log{background:var(--surface);border:1px solid var(--line);padding:18px;display:flex;flex-direction:column;gap:10px}
+.log blockquote{margin:0;padding-left:14px;border-left:3px solid var(--lithium);font-size:.95rem}
+footer{border-top:1px solid var(--line);padding-top:18px;font-size:.85rem;color:var(--muted);display:flex;flex-direction:column;gap:4px}
+@media (prefers-reduced-motion:no-preference){.marker,.fill{transition:left .3s,width .3s}}
+</style>
+<style>body{margin:0}</style>
+</head>
+<body>
+
+<div class="wrap">
+
+<header class="hero">
+  <div class="cells" aria-hidden="true">
+    <div class="cell li"><span class="n">3</span><span class="s">Li</span><span class="m">6.94</span></div>
+    <div class="cell"><span class="n">6</span><span class="s">C</span><span class="m">12.01</span></div>
+    <div class="cell"><span class="n">14</span><span class="s">Si</span><span class="m">28.09</span></div>
+    <div class="cell cu"><span class="n">29</span><span class="s">Cu</span><span class="m">63.55</span></div>
+  </div>
+  <div>
+    <p class="eyebrow">Materials Science &amp; Engineering</p>
+    <h1>원자 배열을 바꿔<br>세상을 바꾸는 사람</h1>
+    <p class="who">[이름] · [학교] [학년] · 희망 진로: 신소재공학과 → 이차전지 소재 연구원</p>
+  </div>
+</header>
+
+<section>
+  <p class="eyebrow">01 · 진로를 정한 계기</p>
+  <h2>왜 신소재공학인가</h2>
+  <p class="lead">[예시] 휴대폰 배터리가 겨울에 빨리 닳는 이유가 궁금해 찾아보다가, 같은 리튬이온전지라도 양극재가 무엇이냐에 따라 용량과 안전성이 크게 달라진다는 것을 알게 되었다. 성능의 한계를 결정하는 것이 결국 '재료'라는 점에 끌려 신소재공학을 목표로 정했다.</p>
+</section>
+
+<section>
+  <p class="eyebrow">02 · 학과 탐색</p>
+  <h2>신소재공학은 무엇을 배우나</h2>
+  <p class="lead">재료의 구조(원자 배열) → 성질(강도, 전기전도도, 밴드갭) → 공정(만드는 방법) → 성능(제품)의 연결고리를 배운다. 대학마다 '재료공학', '신소재공학', '재료공학부' 등 이름이 다르니 희망 대학 교육과정을 직접 확인하자.</p>
+  <div class="fields">
+    <div class="field"><span class="tag">Metals</span><h3>금속재료</h3><p>합금 설계, 열처리, 경량 소재</p></div>
+    <div class="field"><span class="tag">Ceramics</span><h3>세라믹재료</h3><p>내열 소재, 고체전해질, 유전체</p></div>
+    <div class="field"><span class="tag">Polymers</span><h3>고분자재료</h3><p>분리막, 유연 기판, 바인더</p></div>
+    <div class="field star"><span class="tag">Electronic</span><h3>반도체·전자재료</h3><p>박막 증착, 밴드갭 조절, 디스플레이</p></div>
+    <div class="field star"><span class="tag">Energy</span><h3>에너지재료</h3><p>이차전지 양·음극재, 태양전지</p></div>
+    <div class="field star"><span class="tag">Nano</span><h3>나노재료</h3><p>그래핀, 탄소나노튜브, 2D 소재</p></div>
+  </div>
+</section>
+
+<section>
+  <p class="eyebrow">03 · 졸업 후</p>
+  <h2>진출 분야</h2>
+  <div class="tbl"><table>
+    <thead><tr><th>분야</th><th>하는 일</th><th>필요 역량</th></tr></thead>
+    <tbody>
+      <tr><td>이차전지 소재 연구원</td><td>양극재·음극재 조성 설계, 수명·용량 평가</td><td>전기화학, 결정학</td></tr>
+      <tr><td>반도체 공정 엔지니어</td><td>증착·식각 공정 조건 최적화, 불량 분석</td><td>박막공학, 데이터 분석</td></tr>
+      <tr><td>소재 분석 연구원</td><td>XRD·SEM·TEM으로 구조와 결함 분석</td><td>재료분석, 꼼꼼함</td></tr>
+      <tr><td>디스플레이 소재 개발</td><td>OLED 발광재료, 유연 기판 개발</td><td>유기화학, 광학</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section>
+  <p class="eyebrow">04 · 고등학교에서 준비할 것</p>
+  <h2>지금 할 수 있는 것</h2>
+  <div class="prep">
+    <div>
+      <h3>연계 과목</h3>
+      <div class="chips"><span class="chip">물리학</span><span class="chip">화학</span><span class="chip">미적분</span><span class="chip">기하</span><span class="chip">정보</span><span class="chip">물질과 에너지</span></div>
+      <h3>추천 도서</h3>
+      <ul>
+        <li>『사소한 것들의 과학』 마크 미오도닉 — 재료공학자가 일상 속 재료를 설명</li>
+        <li>『사라진 스푼』 샘 킨 — 주기율표 원소 이야기</li>
+      </ul>
+    </div>
+    <div>
+      <h3>탐구 주제 예시</h3>
+      <ul>
+        <li>양극재 종류별 이론용량 비교와 실제 용량과의 차이 원인</li>
+        <li>실리콘 음극재의 부피 팽창 문제와 해결 방안</li>
+        <li>밴드갭에 따른 LED 발광 색 변화 탐구</li>
+        <li>그래핀의 전기전도도가 높은 이유 (sp² 결합 구조)</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="lab">
+  <p class="eyebrow">05 · 직접 만든 프로그램</p>
+  <h2>소재 계산 실험실</h2>
+  <p class="lead">교과서 공식을 이용해 소재의 성능을 계산하는 프로그램이다. 값을 바꿔 보면 결과가 바로 바뀐다.</p>
+
+  <div class="lab">
+    <div class="tabs" role="tablist">
+      <button role="tab" id="tab-bat" aria-selected="true" aria-controls="p-bat">① 배터리 이론용량</button>
+      <button role="tab" id="tab-gap" aria-selected="false" aria-controls="p-gap">② 밴드갭 → 빛의 색</button>
+    </div>
+
+    <div class="panel" id="p-bat" role="tabpanel">
+      <div class="inputs">
+        <label for="mat">전극 소재
+          <select id="mat"></select>
+        </label>
+        <div class="row2">
+          <label for="mm">몰질량 M (g/mol)<input id="mm" type="number" step="0.01" min="0.1"></label>
+          <label for="ne">이동 전자 수 n<input id="ne" type="number" step="0.05" min="0.05"></label>
+        </div>
+        <label for="target">만들고 싶은 배터리 용량 (mAh)<input id="target" type="number" step="100" min="1" value="5000"></label>
+        <div class="formula">Q = n × F ÷ (3.6 × M)<br>F = 96485 C/mol (패러데이 상수)</div>
+      </div>
+      <div class="out">
+        <div>
+          <p class="note">이론 비용량</p>
+          <p class="big" id="qOut">–<small> mAh/g</small></p>
+        </div>
+        <p class="note" id="massOut"></p>
+        <div class="bars" id="bars"></div>
+        <p class="note">실제 셀은 구조 안정성 때문에 이론값보다 적게 사용한다. 예를 들어 LiCoO₂는 리튬을 절반 정도만 꺼내 쓰는 경우가 많다.</p>
+      </div>
+    </div>
+
+    <div class="panel" id="p-gap" role="tabpanel" hidden>
+      <div class="inputs">
+        <label for="semi">반도체 소재
+          <select id="semi"></select>
+        </label>
+        <label for="eg">밴드갭 Eg (eV)<input id="eg" type="number" step="0.01" min="0.3" max="6"></label>
+        <label for="egRange">밴드갭 조절<input id="egRange" type="range" min="0.5" max="4" step="0.01"></label>
+        <div class="formula">λ (nm) = 1240 ÷ Eg (eV)<br>E = hc/λ 에서 유도</div>
+      </div>
+      <div class="out">
+        <div class="res">
+          <div class="swatch" id="sw"></div>
+          <div>
+            <p class="big" id="lamOut">–<small> nm</small></p>
+            <p id="region"></p>
+          </div>
+        </div>
+        <div>
+          <div class="spectrum"><div class="marker" id="mk"></div></div>
+          <div class="axis"><span>380</span><span>480</span><span>580</span><span>680</span><span>780 nm</span></div>
+        </div>
+        <p class="note" id="gapNote"></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <p class="eyebrow">06 · 탐구 기록</p>
+  <h2>프로그램을 만들며 알게 된 것</h2>
+  <div class="log">
+    <blockquote>[예시] 계산기로 비교해 보니 실리콘 음극재의 이론용량이 흑연의 약 10배였다. 그런데도 상용 배터리에 소량만 섞어 쓰는 이유를 조사했고, 충전 시 부피가 크게 팽창해 전극이 깨지는 문제 때문임을 알게 되었다. 이를 해결하는 실리콘-탄소 복합소재에 대해 후속 탐구를 진행할 계획이다.</blockquote>
+    <p class="note">→ 숫자 결과 + '왜 그런지' 추가 조사 + 다음 탐구로 연결하는 흐름이 생기부에 쓰기 좋다.</p>
+  </div>
+</section>
+
+<footer>
+  <p>제작: [이름] · 제작 도구: AI(Claude)로 코드 초안 작성 후 직접 수정</p>
+  <p>참고: 고등학교 화학·물리학 교과서, 각 대학 신소재공학과 교육과정 안내</p>
+</footer>
+</div>
+
+<script>
+const F = 96485;
+const mats = [
+  {name:"흑연 (LiC₆) · 음극", M:72.06, n:1},
+  {name:"실리콘 (Li₁₅Si₄ 기준) · 음극", M:28.09, n:3.75},
+  {name:"LiCoO₂ (LCO) · 양극", M:97.87, n:1},
+  {name:"LiFePO₄ (LFP) · 양극", M:157.76, n:1},
+  {name:"LiMn₂O₄ (LMO) · 양극", M:180.81, n:1},
+  {name:"직접 입력", M:100, n:1}
+];
+const semis = [
+  {name:"Si (실리콘)", eg:1.12, use:"태양전지·반도체 칩. 빛을 거의 내지 못하는 간접 밴드갭 소재다."},
+  {name:"GaAs (갈륨비소)", eg:1.42, use:"적외선 LED, 리모컨 송신부."},
+  {name:"GaP (갈륨인)", eg:2.26, use:"초록·노랑 표시용 LED."},
+  {name:"InGaN (인듐갈륨질화물)", eg:2.70, use:"파란 LED. 인듐 비율로 밴드갭을 조절한다."},
+  {name:"GaN (갈륨질화물)", eg:3.40, use:"자외선 LED, 고출력 전력반도체."},
+  {name:"직접 입력", eg:2.0, use:"원하는 밴드갭을 넣어 보자."}
+];
+const $ = id => document.getElementById(id);
+const cap = (M,n) => n*F/(3.6*M);
+
+mats.forEach((m,i)=>$("mat").add(new Option(m.name,i)));
+semis.forEach((s,i)=>$("semi").add(new Option(s.name,i)));
+
+function setMat(){const m=mats[$("mat").value];$("mm").value=m.M;$("ne").value=m.n;calcBat();}
+function calcBat(){
+  const M=+$("mm").value, n=+$("ne").value, t=+$("target").value;
+  if(!(M>0&&n>0)){$("qOut").innerHTML='–<small> mAh/g</small>';return;}
+  const q=cap(M,n);
+  $("qOut").innerHTML=Math.round(q).toLocaleString()+'<small> mAh/g</small>';
+  $("massOut").textContent = t>0 ? `${t.toLocaleString()} mAh를 저장하려면 이 소재가 이론상 최소 ${(t/q).toFixed(1)} g 필요하다.` : "";
+  const list=mats.slice(0,5).map(m=>({name:m.name.split(" ")[0],q:cap(m.M,m.n)}));
+  const cur=$("mat").value==5?{name:"입력값",q,me:true}:null;
+  const all=cur?[...list,cur]:list;
+  const max=Math.max(...all.map(x=>x.q));
+  const selName=mats[$("mat").value].name.split(" ")[0];
+  $("bars").innerHTML=all.map(x=>`<div class="bar ${x.me||(!cur&&x.name===selName)?'me':''}"><span>${x.name}</span><span class="track"><span class="fill" style="width:${x.q/max*100}%"></span></span><span class="v">${Math.round(x.q)}</span></div>`).join("");
+}
+
+function wlColor(l){
+  let r=0,g=0,b=0;
+  if(l>=380&&l<440){r=-(l-440)/60;b=1}
+  else if(l<490){g=(l-440)/50;b=1}
+  else if(l<510){g=1;b=-(l-510)/20}
+  else if(l<580){r=(l-510)/70;g=1}
+  else if(l<645){r=1;g=-(l-645)/65}
+  else if(l<=780){r=1}
+  let f=1; if(l>700)f=.3+.7*(780-l)/80; if(l<420)f=.3+.7*(l-380)/40;
+  return `rgb(${Math.round(255*r*f)},${Math.round(255*g*f)},${Math.round(255*b*f)})`;
+}
+function colorName(l){
+  if(l<380)return["자외선 (눈에 안 보임)","var(--muted)"];
+  if(l>780)return["적외선 (눈에 안 보임)","var(--muted)"];
+  const n=l<450?"보라":l<495?"파랑":l<570?"초록":l<590?"노랑":l<620?"주황":"빨강";
+  return[n+" 가시광선","var(--lithium)"];
+}
+function setSemi(){const s=semis[$("semi").value];$("eg").value=s.eg;$("egRange").value=s.eg;calcGap();}
+function calcGap(){
+  const eg=+$("eg").value;
+  if(!(eg>0)){return;}
+  const l=1240/eg;
+  $("lamOut").innerHTML=Math.round(l)+'<small> nm</small>';
+  const [nm,c]=colorName(l);
+  $("region").innerHTML=`<span class="pill" style="color:${c}">${nm}</span>`;
+  const vis=l>=380&&l<=780;
+  $("sw").style.background=vis?wlColor(l):"repeating-linear-gradient(45deg,var(--line) 0 6px,var(--bg) 6px 12px)";
+  const pos=Math.min(100,Math.max(0,(l-380)/400*100));
+  $("mk").style.left=pos+"%";
+  $("gapNote").textContent=semis[$("semi").value].use;
+}
+
+$("mat").onchange=setMat; ["mm","ne"].forEach(id=>$(id).oninput=()=>{$("mat").value=5;calcBat();});
+$("target").oninput=calcBat;
+$("semi").onchange=setSemi;
+$("eg").oninput=()=>{$("egRange").value=$("eg").value;calcGap();};
+$("egRange").oninput=()=>{$("eg").value=$("egRange").value;$("semi").value=5;calcGap();};
+
+document.querySelectorAll('[role=tab]').forEach(t=>t.onclick=()=>{
+  document.querySelectorAll('[role=tab]').forEach(b=>{b.setAttribute('aria-selected',b===t);$(b.getAttribute('aria-controls')).hidden=b!==t;});
+});
+
+$("mat").value=0; setMat();
+$("semi").value=3; setSemi();
+</script>
+</body>
+</html>
